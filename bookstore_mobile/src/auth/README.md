@@ -13,7 +13,7 @@ The authentication system uses JWT tokens for secure user authentication. The im
 
 ## Components
 
-### Authentication Service (`AuthService.ts`)
+### Authentication Service (`authService.ts`)
 
 The authentication service is responsible for:
 
@@ -103,7 +103,7 @@ User information is extracted from the JWT token payload, which typically includ
 
 ## Configuration
 
-The authentication service is configured to work with a backend API. The API URL can be configured in the `AuthService.ts` file:
+The authentication service is configured to work with a backend API. The API URL can be configured in the `authService.ts` file:
 
 ```typescript
 const API_URL = 'https://api.bookstore.com'; // Replace with your actual API URL

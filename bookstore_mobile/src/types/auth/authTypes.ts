@@ -1,5 +1,5 @@
 // Define the shape of our authentication context
-import {User} from "@/src/types/user/UserTypes";
+import {User} from "@/types/user/userTypes.ts";
 
 export interface AuthContextType {
 	user: User | null;

@@ -16,7 +16,7 @@ This directory contains service modules that handle external data operations and
   - `bookService.ts` - Functions for fetching and managing books
   - `categoryService.ts` - Functions for book categories
 - `auth/` - Authentication services
-  - `AuthService.ts` - Login, registration, token management
+  - `authService.ts` - Login, registration, token management
 - `user/` - User-related services
   - `userService.ts` - User profile and preferences
 - `cart/` - Shopping cart services

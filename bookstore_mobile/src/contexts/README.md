@@ -12,7 +12,7 @@ This directory contains React Context providers and consumers used for state man
 - `AuthContext/` - Authentication state management
   - `AuthContext.tsx` - Context definition and provider
   - `AuthReducer.ts` - State reducer for auth actions
-  - `AuthTypes.ts` - Type definitions for auth context
+  - `authTypes.ts` - Type definitions for auth context
 - `CartContext/` - Shopping cart state management
   - `CartContext.tsx` - Context for cart items and operations
   - `CartReducer.ts` - State reducer for cart actions
@@ -23,7 +23,7 @@ This directory contains React Context providers and consumers used for state man
 - `UserContext/` - User profile and preferences
   - `UserContext.tsx` - Context for user data
   - `UserReducer.ts` - State reducer for user actions
-  - `UserTypes.ts` - Type definitions for user context
+  - `userTypes.ts` - Type definitions for user context
 - `BookContext/` - Book browsing and filtering
   - `BookContext.tsx` - Context for book browsing state
   - `BookReducer.ts` - State reducer for book actions

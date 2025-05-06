@@ -1,11 +1,11 @@
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import {jwtDecode} from 'jwt-decode';
-import {ACCESS_TOKEN_KEY, AuthResponse, JwtPayload, REFRESH_TOKEN_KEY} from '../types/auth/AuthTypes';
-import {User} from "@/src/types/user/UserTypes";
+import {ACCESS_TOKEN_KEY, AuthResponse, JwtPayload, REFRESH_TOKEN_KEY} from '@/types/auth/authTypes.ts';
+import {API_URL} from "@queries/auth/apis.ts";
+import {User} from "@/types/user/userTypes.ts";
 
-// API configuration
-const API_URL = 'https://api.bookstore.com'; // Replace with your actual API URL
+// Replace with your actual API URL
 
 /**
  * Authentication service for handling user authentication
@@ -157,7 +157,7 @@ class AuthService {
 	}
 
 	/**
-	 * Setup axios interceptors for automatic token refresh
+	 * Setup http interceptors for automatic token refresh
 	 */
 	setupAxiosInterceptors(): void {
 		axios.interceptors.request.use(

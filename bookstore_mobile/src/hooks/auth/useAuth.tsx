@@ -1,6 +1,6 @@
-import {AuthContextType} from "@/src/types/auth/AuthTypes";
+import {AuthContextType} from "@/types/auth/authTypes";
 import {useContext} from "react";
-import {AuthContext} from "@/src/contexts/auth/AuthContext";
+import {AuthContext} from "@/contexts/auth/AuthContext";
 
 /**
  * Custom hook to use the auth context

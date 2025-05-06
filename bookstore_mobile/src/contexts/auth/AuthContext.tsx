@@ -1,7 +1,7 @@
+import authService from '@/services/auth/authService';
+import {AuthContextType} from '@/types/auth/authTypes';
 import React, {createContext, useState, useContext, useEffect, ReactNode} from 'react';
-import {AuthContextType} from "@/src/types/auth/AuthTypes";
-import {User} from "@/src/types/user/UserTypes";
-import authService from "@/src/services/AuthService";
+import {User} from "@/types/user/userTypes.ts";
 
 // Create the authentication context
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 	useEffect(() => {
 		const initAuth = async () => {
 			try {
-				// Setup axios interceptors for token handling
+				// Setup http interceptors for token handling
 				authService.setupAxiosInterceptors();
 
 				// Check if user is authenticated

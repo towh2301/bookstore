@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Redirect} from 'expo-router';
-import {useAuth} from "@/src/hooks/auth/useAuth";
+import {useAuth} from "../src/hooks/auth/useAuth";
 
 /**
  * Home screen component
@@ -12,6 +12,7 @@ export default function HomeScreen() {
 
 	// Redirect to login if not authenticated
 	if (!isAuthenticated) {
+		// @ts-ignore
 		return <Redirect href="/login"/>;
 	}
 
