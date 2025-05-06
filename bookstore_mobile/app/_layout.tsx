@@ -1,29 +1,67 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import React, {useEffect} from 'react';
+import {Stack} from 'expo-router';
+import {AuthProvider} from '@/src/contexts/auth/AuthContext';
+import {View, ActivityIndicator} from 'react-native';
+import {useAuth} from "@/src/hooks/auth/useAuth";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
+/**
+ * Root layout component that wraps the entire application
+ */
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+	return (
+		<AuthProvider>
+			<RootLayoutNav/>
+		</AuthProvider>
+	);
+}
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+/**
+ * Navigation component that handles authentication state
+ */
+function RootLayoutNav() {
+	const {isLoading, isAuthenticated} = useAuth();
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+	// Show loading indicator while checking authentication state
+	if (isLoading) {
+		return (
+			<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+				<ActivityIndicator size="large" color="#0000ff"/>
+			</View>
+		);
+	}
+
+	return (
+		<Stack>
+			{/* Public routes */}
+			<Stack.Screen
+				name="login"
+				options={{
+					title: 'Login',
+					headerShown: !isAuthenticated, // Hide header if authenticated
+				}}
+			/>
+			<Stack.Screen
+				name="register"
+				options={{
+					title: 'Register',
+					headerShown: !isAuthenticated, // Hide header if authenticated
+				}}
+			/>
+
+			{/* Protected routes */}
+			<Stack.Screen
+				name="index"
+				options={{
+					title: 'Home',
+					headerShown: isAuthenticated, // Show header if authenticated
+				}}
+			/>
+			<Stack.Screen
+				name="(tabs)"
+				options={{
+					headerShown: false, // Hide header for tab navigation
+				}}
+			/>
+		</Stack>
+	);
 }
