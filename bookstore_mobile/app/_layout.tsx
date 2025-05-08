@@ -1,17 +1,21 @@
-import React, {useEffect} from 'react';
 import {Stack} from 'expo-router';
-import {AuthProvider} from '@/src/contexts/auth/AuthContext';
 import {View, ActivityIndicator} from 'react-native';
-import {useAuth} from "@/src/hooks/auth/useAuth";
+import {AuthProvider} from "../src/contexts/auth/AuthContext";
+import {useAuth} from "../src/hooks/auth/useAuth";
+import {AuthNavigator, AppNavigator} from "../src/navigation/navigators";
+import {NavigationContainer} from "expo-router/build/fork/NavigationContainer";
+import {navigationRef} from "../src/navigation/navigationRef";
 
 /**
  * Root layout component that wraps the entire application
  */
 export default function RootLayout() {
 	return (
-		<AuthProvider>
-			<RootLayoutNav/>
-		</AuthProvider>
+		<NavigationContainer ref={navigationRef}>
+			<AuthProvider>
+				<RootLayoutNav/>
+			</AuthProvider>
+		</NavigationContainer>
 	);
 }
 
@@ -32,36 +36,11 @@ function RootLayoutNav() {
 
 	return (
 		<Stack>
-			{/* Public routes */}
-			<Stack.Screen
-				name="login"
-				options={{
-					title: 'Login',
-					headerShown: !isAuthenticated, // Hide header if authenticated
-				}}
-			/>
-			<Stack.Screen
-				name="register"
-				options={{
-					title: 'Register',
-					headerShown: !isAuthenticated, // Hide header if authenticated
-				}}
-			/>
+			{/* Use AuthNavigator for authentication routes */}
+			<AuthNavigator/>
 
-			{/* Protected routes */}
-			<Stack.Screen
-				name="index"
-				options={{
-					title: 'Home',
-					headerShown: isAuthenticated, // Show header if authenticated
-				}}
-			/>
-			<Stack.Screen
-				name="(tabs)"
-				options={{
-					headerShown: false, // Hide header for tab navigation
-				}}
-			/>
+			{/* Use AppNavigator for protected routes */}
+			<AppNavigator/>
 		</Stack>
 	);
 }

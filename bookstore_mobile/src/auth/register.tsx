@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'expo-router';
-import RegisterScreen from '../src/screens/auth/RegisterScreen';
-import {useAuth} from "../src/hooks/auth/useAuth";
+import RegisterScreen from '../screens/auth/RegisterScreen.tsx';
+import {useAuth} from "../hooks/auth/useAuth.tsx";
 
 /**
  * Register route component

@@ -40,12 +40,11 @@ public class ApplicationInitConfig {
                     }
                 }
 
-
                 // Create an admin user
                 var user = User.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin"))
-                        .roles(roleRepository.findAll().stream().collect(Collectors.toSet()))
+                        .roles(new HashSet<>(roleRepository.findAll()))
                         .build();
 
                 // Save the user to the database

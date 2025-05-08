@@ -42,7 +42,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 			}
 		};
 
-		initAuth();
+		initAuth().then((r) => {
+			console.log('AuthProvider:', r);
+		});
 	}, []);
 
 	/**
